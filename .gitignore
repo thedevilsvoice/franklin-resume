@@ -2,7 +2,7 @@
 *.deb
 .buildlog
 .terraform
-.envrc
+#.envrc
 markdown/my_resume.*
 
 # Python

@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2023 DE:AD:10:C5 <franklin@dead10c5.org>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later
+
 resource "random_id" "default" {
   byte_length = 8
 }
@@ -48,5 +52,5 @@ resource "google_cloud_run_service_iam_member" "member" {
   location = google_cloudfunctions2_function.default.location
   service  = google_cloudfunctions2_function.default.name
   role     = "roles/run.invoker"
-  member   = "allUsers"
+  member   = "serviceAccount:${var.service_account_email}"
 }
