@@ -23,3 +23,8 @@ variable "tags" {
   }
   type = map(string)
 }
+
+variable "service_account_email" {
+  description = "Optional IAM Service Account (just an email) that will be granted read-only access to the secret."
+  type        = string
+}

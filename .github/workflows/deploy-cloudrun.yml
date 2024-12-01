@@ -1,5 +1,6 @@
 name: Cloud Run Deployment
 on:
+  pull_request:
   push:
     branches:
       - main
@@ -8,6 +9,7 @@ on:
       - created
 jobs:
   job_id:
+    runs-on: ubuntu-latest
     permissions:
       contents: 'read'
       id-token: 'write'
@@ -19,5 +21,5 @@ jobs:
         service_account: 'fdiaz-gke-bot@gcp-gcs-pso.iam.gserviceaccount.com'
     - uses: 'google-github-actions/deploy-cloudrun@v2'
       with:
-        image: 'ghcr.io/devsecfranklin/franklin-resume-amd64:'
+        image: 'ghcr.io/devsecfranklin/franklin-resume-amd64:latest'
         service: 'franklin-test'

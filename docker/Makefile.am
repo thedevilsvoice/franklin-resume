@@ -7,10 +7,11 @@ LATEST :=  $(shell docker image ls | grep ghcr.io/devsecfranklin/franklin-resume
 	@test $${CR_PAT?Push will fail. You need to export the CR_PAT token for GHCR}
 
 .PHONY: amd64
-amd64:
+amd64:  .check-env-vars
 	docker compose build amd64
 	@echo "Tagging image:  $(shell docker images -q | head -1)"
-	docker tag $(shell docker images -q | head -1) ghcr.io/devsecfranklin/franklin-resume-amd64:latest
+	docker tag $(shell docker images -q | head -1) gcr.io/gcp-gcs-pso/franklin-test-amd64:latest
+	docker push gcr.io/gcp-gcs-pso/franklin-test-amd64:latest
 
 build:
 	@if [ "${LATEST}" != "${SHORT_NAME}" ] && [ ! -z "${LATEST}" ]; then \
